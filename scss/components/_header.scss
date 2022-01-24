@@ -1,0 +1,130 @@
+@use "sass:color";
+
+header {
+  position: fixed;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.8s cubic-bezier(1, -0.7, 0, 1.77);
+
+  @include tablet{
+    position: relative;
+    left: auto;
+    transform: translateX(0);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include desktop{
+    height: 80px;
+  }
+
+  .logo {
+    font-size: 2.5rem;
+    color: $main-color;
+    font-weight: 700;
+    background-color: $header-bg-color;
+    position: sticky;
+    z-index: 1;
+    padding: 5px 0 5px 8px;
+
+    @include tablet{
+    background-color: transparent;
+    }
+    @include desktop{
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .hamburger {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+
+    transition: all 0.5s;
+
+    &::before {
+      color: $main-color;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    &:checked {
+      &::before {
+        content: "\f00d";
+        position: absolute;
+        right: 3px;
+        cursor: pointer;
+      }
+      & ~ nav {
+        transform: translateY(-13px);
+        transition: transform 0.5s cubic-bezier(0.84,-0.05, 0, 1.38);
+      }
+    }
+    @include tablet{
+      display: none;
+    }
+  }
+
+  nav {
+    background-color: $header-bg-color;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+
+    height: fit-content;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    left: 0;
+    transform: translateY(-96px);
+    transition: transform 0.5s cubic-bezier(1,-0.39, 0, 1.15);
+    width: 100%;
+
+    ul {
+
+      @include tablet{
+        display: flex;
+        justify-content: space-around;
+        padding-left: 90px;
+        align-items: center;
+        height: 55px;
+      }
+      @include desktop{
+        justify-content: flex-end;
+        height: 80px;
+      }
+      li {
+        font-weight: 600;
+        padding: 5px 8px;
+        border-bottom: 1px solid rgba(185, 185, 185, 0.65);
+
+        @include tablet{
+          border: none;
+          padding: 5px 20px;
+        }
+
+        a:hover{
+          color: $accent-color;
+        }
+      }
+      li:first-of-type{
+        padding-top:20px;
+        @include tablet{
+          padding-top: 5px;
+        }
+      }
+    }
+    @include tablet{
+      background-color: transparent;
+      box-shadow: none;
+      position: relative;
+      transform: translateY(0);
+    }
+    @include desktop{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}

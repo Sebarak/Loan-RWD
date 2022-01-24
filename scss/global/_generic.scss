@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oleo+Script&display=swap');
+
+body {
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  color: $text-color;
+  background-image: url("../../img/background.jpg");
+}
+
+a {
+  text-decoration: none;
+  color: $text-color;
+}
+
+.container {
+  margin: 0 auto;
+
+  @include tablet {
+    max-width: $tablet-width;
+  }
+
+  @include desktop {
+    max-width: $desktop-width;
+  }
+}
